@@ -4,95 +4,232 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>QR-код</title>
+<title>QR-панель</title>
 
 <style>
 
+:root{
+--bg:#0f0f0f;
+--card:#1e1e1e;
+--text:white;
+}
+
+.light{
+--bg:#f4f4f4;
+--card:white;
+--text:#111;
+}
+
 body{
-font-family: Arial, sans-serif;
-background:#121212;
-color:white;
+font-family:Arial,sans-serif;
+background:radial-gradient(circle at top,#2c2c2c,#0a0a0a);
+color:var(--text);
 margin:0;
 padding:25px;
 text-align:center;
+transition:0.3s;
 }
 
 h1{
-margin-bottom:30px;
+margin-bottom:10px;
+cursor:pointer;
+}
+
+button{
+padding:8px 14px;
+margin-bottom:25px;
+border:none;
+border-radius:8px;
+cursor:pointer;
 }
 
 .container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
 gap:15px;
-max-width:700px;
+max-width:800px;
 margin:auto;
 }
 
 .card{
-background:#1e1e1e;
-padding:18px;
+background:var(--card);
+padding:15px;
 border-radius:12px;
 text-decoration:none;
-color:white;
-font-size:17px;
-display:block;
+color:var(--text);
+display:flex;
+align-items:center;
+gap:10px;
+justify-content:center;
 transition:0.2s;
-border:1px solid #2c2c2c;
+border:1px solid #2a2a2a;
 }
 
 .card:hover{
-background:#2a2a2a;
 transform:scale(1.05);
 }
 
-.category{
-margin-top:40px;
-margin-bottom:15px;
-font-size:20px;
-opacity:0.8;
+.icon{
+width:18px;
+height:18px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<h1>QR-код</h1>
+<h1 id="title">QR-панель</h1>
 
-<div class="category">Школа</div>
+<button onclick="toggleTheme()">🌗 тема</button>
 
-<div class="container">
+<div class="container" id="links"></div>
 
-<a class="card" href="https://calcus.ru/kalkulyator-drobej">🎓 Калькулятор дробей</a>
-<a class="card" href="https://wikipedia.org">📚 Wikipedia</a>
-<a class="card" href="https://translate.google.com">🌍 Переводчик</a>
-<a class="card" href="https://gdz.ru">📚ГДЗ</a>
+<script>
 
-</div>
+/* ---------- ССЫЛКИ ---------- */
+/* Добавлять новые очень просто */
 
-<div class="category">Развлечения</div>
+const sites=[
 
-<div class="container">
+["Калькулятор дробей","https://calcus.ru/kalkulyator-drobej"],
+["Википедия","https://wikipedia.org"],
+["Переводчик","https://translate.google.com"],
+["ГДЗ","https://gdz.ru"],
+["YouTube","https://youtube.com"],
+["Музыка","https://music.youtube.com"],
+["Twitch","https://twitch.tv"],
+["GitHub","https://github.com"],
+["Pinterest","https://pinterest.com"],
+["Telegram","https://web.telegram.org"],
+["Discord","https://discord.com"]
 
-<a class="card" href="https://youtube.com">📺 YouTube</a>
-<a class="card" href="https://music.youtube.com">🎵 Музыка</a>
-<a class="card" href="https://twitch.tv">🎮 Twitch</a>
+]
 
-</div>
+/* ---------- генерация кнопок ---------- */
 
-<div class="category">Инструменты</div>
+const container=document.getElementById("links")
 
-<div class="container">
+sites.forEach(site=>{
 
-<a class="card" href="https://github.com">💻 GitHub</a>
-<a class="card" href="https://ru.pinterest.com/">🌹 Pinterest</a>
-<a class="card" href="https://web.telegram.org/a/">📫 Telegram</a>
-<a class="card" href="https://discord.com/">📫 Discord</a>
-  
-</div>
+const name=site[0]
+const url=site[1]
+const domain=(new URL(url)).hostname
+
+const a=document.createElement("a")
+
+a.href=url
+a.className="card"
+a.innerHTML=
+`<img class="icon" src="https://www.google.com/s2/favicons?domain=${domain}">
+${name}`
+
+container.appendChild(a)
+
+})
+
+/* ---------- тема ---------- */
+
+function toggleTheme(){
+document.body.classList.toggle("light")
+}
+
+/* ---------- пасхалки ---------- */
+
+let clicks=0
+
+document.getElementById("title").onclick=function(){
+clicks++
+
+if(clicks==7){
+alert("🥚 Пасхалка №1")
+}
+}
+
+document.addEventListener("keydown",e=>{
+if(e.key==="q"){
+alert("🥚 Пасхалка №2")
+}
+})
+
+let secret=0
+
+document.body.addEventListener("dblclick",()=>{
+secret++
+
+if(secret==3){
+alert("🥚 Пасхалка №3")
+}
+})
+
+console.log("🥚 Пасхалка №4")
+
+setTimeout(()=>{
+if(Math.random()<0.02){
+alert("🥚 Пасхалка №5")
+}
+},5000)
+* -------- СКРЫТАЯ МИНИ-ИГРА -------- */
+
+let gameActive=false
+let score=0
+let box
+
+function startSecretGame(){
+
+if(gameActive)return
+gameActive=true
+
+document.body.innerHTML=""
+
+const title=document.createElement("h1")
+title.innerText="Секретная игра"
+document.body.appendChild(title)
+
+const scoreText=document.createElement("p")
+scoreText.innerText="Очки: 0"
+document.body.appendChild(scoreText)
+
+box=document.createElement("div")
+box.style.width="40px"
+box.style.height="40px"
+box.style.background="red"
+box.style.position="absolute"
+box.style.cursor="pointer"
+document.body.appendChild(box)
+
+moveBox()
+
+box.onclick=function(){
+
+score++
+scoreText.innerText="Очки: "+score
+moveBox()
+
+}
+
+}
+
+function moveBox(){
+
+const x=Math.random()*window.innerWidth
+const y=Math.random()*window.innerHeight
+
+box.style.left=x+"px"
+box.style.top=y+"px"
+
+}
+
+/* секретный запуск */
+document.addEventListener("keydown",e=>{
+
+if(e.key==="g"){
+startSecretGame()
+}
+
+})
+
+</script>
 
 </body>
 </html>

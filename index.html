@@ -7,17 +7,10 @@
 <title>QR-панель</title>
 
 <style>
-
 :root{
 --bg:#0f0f0f;
 --card:#1e1e1e;
 --text:white;
-}
-
-.light{
---bg:#f4f4f4;
---card:white;
---text:#111;
 }
 
 body{
@@ -32,15 +25,6 @@ transition:0.3s;
 
 h1{
 margin-bottom:10px;
-cursor:pointer;
-}
-
-button{
-padding:8px 14px;
-margin-bottom:25px;
-border:none;
-border-radius:8px;
-cursor:pointer;
 }
 
 .container{
@@ -62,7 +46,7 @@ align-items:center;
 gap:10px;
 justify-content:center;
 transition:0.2s;
-border:1px solid #2a2a2a;
+border:1px solid #2a2c2c;
 }
 
 .card:hover{
@@ -73,25 +57,18 @@ transform:scale(1.05);
 width:18px;
 height:18px;
 }
-
 </style>
 </head>
 
 <body>
 
-<h1 id="title">QR-панель</h1>
-
-<button onclick="toggleTheme()">🌗 тема</button>
+<h1>QR-панель</h1>
 
 <div class="container" id="links"></div>
 
 <script>
-
 /* ---------- ССЫЛКИ ---------- */
-/* Добавлять новые очень просто */
-
 const sites=[
-
 ["Калькулятор дробей","https://calcus.ru/kalkulyator-drobej"],
 ["Википедия","https://wikipedia.org"],
 ["Переводчик","https://translate.google.com"],
@@ -103,73 +80,73 @@ const sites=[
 ["Pinterest","https://pinterest.com"],
 ["Telegram","https://web.telegram.org"],
 ["Discord","https://discord.com"]
-
 ]
 
 /* ---------- генерация кнопок ---------- */
-
 const container=document.getElementById("links")
-
 sites.forEach(site=>{
-
 const name=site[0]
 const url=site[1]
 const domain=(new URL(url)).hostname
-
 const a=document.createElement("a")
-
 a.href=url
 a.className="card"
-a.innerHTML=
-`<img class="icon" src="https://www.google.com/s2/favicons?domain=${domain}">
-${name}`
-
+a.innerHTML=`<img class="icon" src="https://www.google.com/s2/favicons?domain=${domain}"> ${name}`
 container.appendChild(a)
-
 })
 
-/* ---------- тема ---------- */
+/* ---------- СЕКРЕТНАЯ МИНИ-ИГРА ---------- */
+let gameActive=false
+let box
 
-function toggleTheme(){
-document.body.classList.toggle("light")
+function startMiniGame(){
+if(gameActive)return
+gameActive=true
+
+document.body.innerHTML=""
+
+const title=document.createElement("h1")
+title.innerText="Секретная мини-игра"
+document.body.appendChild(title)
+
+const scoreText=document.createElement("p")
+scoreText.innerText="Очки: 0"
+document.body.appendChild(scoreText)
+
+box=document.createElement("div")
+box.style.width="40px"
+box.style.height="40px"
+box.style.background="red"
+box.style.position="absolute"
+box.style.cursor="pointer"
+document.body.appendChild(box)
+
+let score=0
+
+function moveBox(){
+const x=Math.random()*(window.innerWidth-50)
+const y=Math.random()*(window.innerHeight-50)
+box.style.left=x+"px"
+box.style.top=y+"px"
 }
 
-/* ---------- пасхалки ---------- */
+moveBox()
 
-let clicks=0
-
-document.getElementById("title").onclick=function(){
-clicks++
-
-if(clicks==7){
-alert("🥚 Пасхалка №1")
-}
+box.onclick=function(){
+score++
+scoreText.innerText="Очки: "+score
+moveBox()
 }
 
+/* Выйти из игры можно обновлением страницы */
+}
+
+/* ---------- СЕКРЕТНАЯ КНОПКА ---------- */
 document.addEventListener("keydown",e=>{
-if(e.key==="q"){
-alert("🥚 Пасхалка №2")
+if(e.key==="g"){
+startMiniGame()
 }
 })
-
-let secret=0
-
-document.body.addEventListener("dblclick",()=>{
-secret++
-
-if(secret==3){
-alert("🥚 Пасхалка №3")
-}
-})
-
-console.log("🥚 Пасхалка №4")
-
-setTimeout(()=>{
-if(Math.random()<0.02){
-alert("🥚 Пасхалка №5")
-}
-},5000)
-
 </script>
 
 </body>

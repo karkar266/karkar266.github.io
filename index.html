@@ -1,16 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+
 <head>
-<title>Мой сайт</title>
+<meta charset="UTF-8">
+<title>Моя панель</title>
+
+<style>
+
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+text-align:center;
+margin:0;
+padding:40px;
+}
+
+h1{
+margin-bottom:40px;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+max-width:600px;
+margin:auto;
+}
+
+.card{
+background:rgba(255,255,255,0.15);
+padding:25px;
+border-radius:15px;
+text-decoration:none;
+color:white;
+font-size:20px;
+transition:0.2s;
+}
+
+.card:hover{
+background:rgba(255,255,255,0.3);
+transform:scale(1.05);
+}
+
+
+</style>
 </head>
 
 <body>
 
-<h1>Привет!</h1>
-<p>Это мой сайт с полезными ссылками.</p>
+<h1>🚀 Моя панель</h1>
 
-<a href="https://youtube.com">YouTube</a><br>
-<a href="https://google.com">Google</a>
+<div class="container">
+
+<a class="card" href="https://youtube.com">📺 YouTube</a>
+
+<a class="card" href="https://google.com">🔎 Google</a>
+
+<a class="card" href="https://chat.openai.com">🤖 ChatGPT</a>
+
+<a class="card" href="https://music.youtube.com">🎵 Музыка</a>
+
+<a class="card" href="https://drive.google.com">📁 Файлы</a>
+
+<a class="card" href="https://github.com">💻 GitHub</a>
+
+</div>
 
 </body>
 </html>

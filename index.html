@@ -3,58 +3,92 @@
 
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Моя панель</title>
 
 <style>
 
+body{
+font-family: Arial, sans-serif;
+background:#121212;
+color:white;
+margin:0;
+padding:25px;
+text-align:center;
+}
+
 h1{
-margin-bottom:40px;
+margin-bottom:30px;
 }
 
 .container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:20px;
-max-width:600px;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
+max-width:700px;
 margin:auto;
 }
 
 .card{
-background:rgba(255,255,255,0.15);
-padding:25px;
-border-radius:15px;
+background:#1e1e1e;
+padding:18px;
+border-radius:12px;
 text-decoration:none;
 color:white;
-font-size:20px;
+font-size:17px;
+display:block;
 transition:0.2s;
+border:1px solid #2c2c2c;
 }
 
 .card:hover{
-background:rgba(255,255,255,0.3);
+background:#2a2a2a;
 transform:scale(1.05);
 }
 
+.category{
+margin-top:40px;
+margin-bottom:15px;
+font-size:20px;
+opacity:0.8;
+}
 
 </style>
+
 </head>
 
 <body>
 
 <h1>🚀 Моя панель</h1>
 
+<div class="category">Полезное</div>
+
+<div class="container">
+
+<a class="card" href="https://google.com">🔎 Google</a>
+<a class="card" href="https://wikipedia.org">📚 Wikipedia</a>
+<a class="card" href="https://translate.google.com">🌍 Переводчик</a>
+
+</div>
+
+<div class="category">Развлечения</div>
+
 <div class="container">
 
 <a class="card" href="https://youtube.com">📺 YouTube</a>
+<a class="card" href="https://music.youtube.com">🎵 Музыка</a>
+<a class="card" href="https://twitch.tv">🎮 Twitch</a>
 
-<a class="card" href="https://google.com">🔎 Google</a>
+</div>
+
+<div class="category">Инструменты</div>
+
+<div class="container">
 
 <a class="card" href="https://chat.openai.com">🤖 ChatGPT</a>
-
-<a class="card" href="https://music.youtube.com">🎵 Музыка</a>
-
-<a class="card" href="https://drive.google.com">📁 Файлы</a>
-
 <a class="card" href="https://github.com">💻 GitHub</a>
+<a class="card" href="https://drive.google.com">📁 Google Drive</a>
 
 </div>
 

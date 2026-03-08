@@ -169,65 +169,6 @@ if(Math.random()<0.02){
 alert("🥚 Пасхалка №5")
 }
 },5000)
-* -------- СКРЫТАЯ МИНИ-ИГРА -------- */
-
-let gameActive=false
-let score=0
-let box
-
-function startSecretGame(){
-
-if(gameActive)return
-gameActive=true
-
-document.body.innerHTML=""
-
-const title=document.createElement("h1")
-title.innerText="Секретная игра"
-document.body.appendChild(title)
-
-const scoreText=document.createElement("p")
-scoreText.innerText="Очки: 0"
-document.body.appendChild(scoreText)
-
-box=document.createElement("div")
-box.style.width="40px"
-box.style.height="40px"
-box.style.background="red"
-box.style.position="absolute"
-box.style.cursor="pointer"
-document.body.appendChild(box)
-
-moveBox()
-
-box.onclick=function(){
-
-score++
-scoreText.innerText="Очки: "+score
-moveBox()
-
-}
-
-}
-
-function moveBox(){
-
-const x=Math.random()*window.innerWidth
-const y=Math.random()*window.innerHeight
-
-box.style.left=x+"px"
-box.style.top=y+"px"
-
-}
-
-/* секретный запуск */
-document.addEventListener("keydown",e=>{
-
-if(e.key==="g"){
-startSecretGame()
-}
-
-})
 
 </script>
 
